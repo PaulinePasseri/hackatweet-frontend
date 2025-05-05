@@ -70,16 +70,17 @@ function LastTweets() {
           <span className={styles.username}>@{data.author.username} </span>
           <span className={styles.date}>• {moment(data.date).fromNow()}</span>
         </div>
-        <div className={styles.text}>{data.text.split(/(\s+)/).map((word, i) => {
-    if (word.match(/^#\w+/)) {
-      return (
-        <span key={i} style={{ color: "blue" }}>
-          {word}
-        </span>
-      ); 
-    }
-    return word;
-  })}</div>
+        <div className={styles.text}>
+          {data.text.split(/(\s+)/).map((word, i) => {
+            if (word.match(/^#\w+/)) {
+              return (
+                <span key={i} style={{ color: '#267CDD', fontWeight: 'bold', cursor: 'pointer' }}>
+                  {word}
+                </span>
+              ); 
+            }
+            return word;
+          })}</div>
         <div className={styles.icons}>
           <span className={styles.heartIcon} style={data.likes.find(users => users.token === user.token) ? style : {}}>
             <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(data._id)}/> {data.likes.length}
